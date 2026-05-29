@@ -1,0 +1,24 @@
+{
+  "requested_output": "cvpr_conf_extract/results/cvpr2024_papers.json",
+  "requested_command": "python3 cvpr_conf_extract/src/scrape_cvpr2024.py --format json --output cvpr_conf_extract/results/cvpr2024_papers.json",
+  "status": "blocked_by_environment_network",
+  "timestamp_utc": "2026-05-29T03:30:00Z",
+  "details": [
+    "The scraper was run for all CVPR 2024 papers, but this execution environment cannot reach openaccess.thecvf.com.",
+    "Using the configured HTTP(S) proxy failed with: Tunnel connection failed: 403 Forbidden.",
+    "Clearing proxy environment variables failed with: Temporary failure in name resolution.",
+    "Because no listing page could be fetched from this container, cvpr2024_papers.json could not be generated here."
+  ],
+  "verified_external_sources": [
+    {
+      "name": "CVPR 2024 Open Access Repository",
+      "url": "https://openaccess.thecvf.com/CVPR2024",
+      "notes": "Official source targeted by the scraper."
+    },
+    {
+      "name": "DeepNLP/CVPR-2024-Accepted-Papers",
+      "url": "https://huggingface.co/datasets/DeepNLP/CVPR-2024-Accepted-Papers",
+      "notes": "Browser-accessible mirror showing 2.72k rows with title, authors, abstract, pdf, supplemental, arXiv, and detail URL fields."
+    }
+  ]
+}

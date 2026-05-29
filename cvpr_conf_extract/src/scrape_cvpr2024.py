@@ -11,11 +11,15 @@ import time
 from dataclasses import asdict, dataclass
 from html import unescape
 from pathlib import Path
-from typing import List, Optional
+from typing import Iterable, List, Optional
 from urllib.parse import urljoin
 from urllib.request import Request, urlopen
 
-BASE_URL = "https://openaccess.thecvf.com/CVPR2024?day=all"
+DEFAULT_LISTING_URLS = [
+    "https://openaccess.thecvf.com/CVPR2024?day=2024-06-19",
+    "https://openaccess.thecvf.com/CVPR2024?day=2024-06-20",
+    "https://openaccess.thecvf.com/CVPR2024?day=2024-06-21",
+]
 SITE_ROOT = "https://openaccess.thecvf.com/"
 USER_AGENT = "Mozilla/5.0 (compatible; CVPRScraper/1.0)"
 
@@ -81,9 +85,26 @@ def parse_detail(detail_html: str, detail_url: str) -> dict:
     return {"abstract": abstract, "pdf_url": pdf_url, "supplemental_url": supplemental_url, "paper_url": detail_url}
 
 
-def scrape(limit: Optional[int], delay: float = 0.0) -> List[Paper]:
-    listing_html = fetch_html(BASE_URL)
-    entries = parse_listing(listing_html)
+def unique_entries(entries: Iterable[dict]) -> List[dict]:
+    seen = set()
+    unique = []
+    for entry in entries:
+        detail_url = entry["detail_url"]
+        if detail_url in seen:
+            continue
+        seen.add(detail_url)
+        unique.append(entry)
+    return unique
+
+
+def scrape(limit: Optional[int], delay: float = 0.0, listing_urls: Optional[List[str]] = None) -> List[Paper]:
+    urls = listing_urls or DEFAULT_LISTING_URLS
+    all_entries = []
+    for listing_url in urls:
+        listing_html = fetch_html(listing_url)
+        all_entries.extend(parse_listing(listing_html))
+
+    entries = unique_entries(all_entries)
     if limit is not None:
         entries = entries[:limit]
 
@@ -129,9 +150,15 @@ def main() -> None:
     parser.add_argument("--format", choices=["json", "csv"], default="json")
     parser.add_argument("--output", type=Path, default=Path("cvpr_conf_extract/results/cvpr2024_papers.json"))
     parser.add_argument("--delay", type=float, default=0.0, help="Delay between requests (seconds)")
+    parser.add_argument(
+        "--listing-url",
+        action="append",
+        dest="listing_urls",
+        help="Listing page URL to scrape; repeat to scrape multiple listing pages",
+    )
     args = parser.parse_args()
 
-    papers = scrape(limit=args.limit, delay=args.delay)
+    papers = scrape(limit=args.limit, delay=args.delay, listing_urls=args.listing_urls)
     if args.format == "json":
         write_json(papers, args.output)
     else:
