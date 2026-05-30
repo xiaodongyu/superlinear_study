@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CVPR 2024 Paper Dashboard</title>
+<style>
+:root { --bg:#f4f1ea; --ink:#1d2b2a; --card:#fffaf2; --accent:#0f766e; --accent2:#dc6b2f; --muted:#5f6b6a; }
+* { box-sizing:border-box; }
+body { margin:0; font-family: 'Trebuchet MS', 'Avenir Next', sans-serif; color:var(--ink); background:radial-gradient(circle at 10% 10%, #fff7dd, transparent 40%), radial-gradient(circle at 90% 20%, #d8f2ef, transparent 38%), var(--bg); }
+.container { max-width:1100px; margin:0 auto; padding:28px 16px 40px; }
+h1 { margin:0 0 8px; font-size:2rem; letter-spacing:0.3px; }
+.sub { color:var(--muted); margin:0 0 18px; }
+.grid { display:grid; gap:12px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.card { background:var(--card); border:1px solid #e6dcc8; border-radius:14px; padding:14px; box-shadow:0 4px 18px rgba(20,30,28,0.06); }
+.kpi-label { font-size:0.84rem; color:var(--muted); }
+.kpi-val { font-size:1.7rem; font-weight:700; margin-top:4px; }
+.section { margin-top:18px; }
+.section h2 { margin:0 0 10px; font-size:1.15rem; }
+.two-col { display:grid; gap:12px; grid-template-columns: 1fr 1fr; }
+.chart-title { font-size:14px; font-weight:600; fill:var(--ink); }
+.axis { stroke:#546261; stroke-width:1; }
+.bar { fill:var(--accent); }
+.xlab { font-size:11px; fill:var(--muted); }
+.val { font-size:11px; fill:var(--accent2); font-weight:700; }
+.topic-list { list-style:none; padding:0; margin:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:8px; }
+.topic-list li { display:flex; justify-content:space-between; padding:8px 10px; border:1px dashed #d7cab1; border-radius:10px; background:#fffdf8; }
+.surprise li { margin-bottom:6px; }
+@media (max-width:900px) { .two-col { grid-template-columns:1fr; } h1 { font-size:1.6rem; } }
+</style>
+</head>
+<body>
+  <main class="container">
+    <h1>CVPR 2024 Paper Dashboard</h1>
+    <p class="sub">Generated from scraped metadata in <code>cvpr2024_papers.json</code>.</p>
+
+    <section class="grid">
+      <article class="card"><div class="kpi-label">Count of Papers</div><div class="kpi-val">2716</div></article>
+      <article class="card"><div class="kpi-label">Unique Authors</div><div class="kpi-val">10312</div></article>
+      <article class="card"><div class="kpi-label">Avg Authors / Paper</div><div class="kpi-val">5.63</div></article>
+      <article class="card"><div class="kpi-label">Papers with Open Source Code</div><div class="kpi-val">0.0%</div></article>
+      <article class="card"><div class="kpi-label">Titles Containing ':'</div><div class="kpi-val">57.8%</div></article>
+    </section>
+
+    <section class="section card">
+      <h2>Hot Topics (From Title Keywords)</h2>
+      <ul class="topic-list"><li><span>diffusion</span><b>295</b></li><li><span>models</span><b>290</b></li><li><span>generation</span><b>195</b></li><li><span>segmentation</span><b>170</b></li><li><span>detection</span><b>166</b></li><li><span>model</span><b>158</b></li><li><span>neural</span><b>148</b></li><li><span>object</span><b>142</b></li><li><span>visual</span><b>126</b></li><li><span>human</span><b>122</b></li><li><span>semantic</span><b>105</b></li><li><span>reconstruction</span><b>102</b></li><li><span>efficient</span><b>95</b></li><li><span>scene</span><b>94</b></li></ul>
+    </section>
+
+    <section class="section card">
+      <h2>Surprises</h2>
+      <ul class="surprise">
+        <li>824 papers have 3-4 authors, the largest team-size bucket.</li>
+        <li>57.8% of titles include a colon, showing a strong two-part naming style.</li>
+        <li>0.0% include an explicit code link in the paper page metadata.</li>
+      </ul>
+    </section>
+
+    <section class="section two-col">
+      <article class="card"><svg viewBox="0 0 620 280" role="img" aria-label="Team Size Distribution"><text x="310.0" y="26" text-anchor="middle" class="chart-title">Team Size Distribution</text><line x1="48" y1="232" x2="572" y2="232" class="axis"/><rect x="56.0" y="204.2" width="88.8" height="27.8" class="bar"/><text x="100.4" y="248" text-anchor="middle" class="xlab">1-2</text><text x="100.4" y="198.2" text-anchor="middle" class="val">153</text><rect x="160.8" y="82.0" width="88.8" height="150.0" class="bar"/><text x="205.2" y="248" text-anchor="middle" class="xlab">3-4</text><text x="205.2" y="76.0" text-anchor="middle" class="val">824</text><rect x="265.6" y="56.0" width="88.8" height="176.0" class="bar"/><text x="310.0" y="248" text-anchor="middle" class="xlab">5-6</text><text x="310.0" y="50.0" text-anchor="middle" class="val">967</text><rect x="370.4" y="141.5" width="88.8" height="90.5" class="bar"/><text x="414.8" y="248" text-anchor="middle" class="xlab">7-8</text><text x="414.8" y="135.5" text-anchor="middle" class="val">497</text><rect x="475.2" y="181.9" width="88.8" height="50.1" class="bar"/><text x="519.6" y="248" text-anchor="middle" class="xlab">9+</text><text x="519.6" y="175.9" text-anchor="middle" class="val">275</text></svg></article>
+      <article class="card"><svg viewBox="0 0 620 280" role="img" aria-label="Title Length Distribution (Words)"><text x="310.0" y="26" text-anchor="middle" class="chart-title">Title Length Distribution (Words)</text><line x1="48" y1="232" x2="572" y2="232" class="axis"/><rect x="56.0" y="120.9" width="88.8" height="111.1" class="bar"/><text x="100.4" y="248" text-anchor="middle" class="xlab">&lt;=8</text><text x="100.4" y="114.9" text-anchor="middle" class="val">858</text><rect x="160.8" y="56.0" width="88.8" height="176.0" class="bar"/><text x="205.2" y="248" text-anchor="middle" class="xlab">9-12</text><text x="205.2" y="50.0" text-anchor="middle" class="val">1359</text><rect x="265.6" y="175.9" width="88.8" height="56.1" class="bar"/><text x="310.0" y="248" text-anchor="middle" class="xlab">13-16</text><text x="310.0" y="169.9" text-anchor="middle" class="val">433</text><rect x="370.4" y="223.8" width="88.8" height="8.2" class="bar"/><text x="414.8" y="248" text-anchor="middle" class="xlab">17-20</text><text x="414.8" y="217.8" text-anchor="middle" class="val">63</text><rect x="475.2" y="231.6" width="88.8" height="0.4" class="bar"/><text x="519.6" y="248" text-anchor="middle" class="xlab">21+</text><text x="519.6" y="225.6" text-anchor="middle" class="val">3</text></svg></article>
+    </section>
+  </main>
+</body>
+</html>

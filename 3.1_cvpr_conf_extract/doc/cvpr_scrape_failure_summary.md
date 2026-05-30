@@ -7,10 +7,10 @@ The repository contains a sample output file for five CVPR 2024 papers, but the 
 The attempted full-run command was:
 
 ```bash
-python3 cvpr_conf_extract/src/scrape_cvpr2024.py --format json --output cvpr_conf_extract/results/cvpr2024_papers.json
+python3 3.1_cvpr_conf_extract/src/scrape_cvpr2024.py --format json --output 3.1_cvpr_conf_extract/results/cvpr2024_papers.json
 ```
 
-That command failed before it could fetch any listing page, so `cvpr_conf_extract/results/cvpr2024_papers.json` could not be generated in this container.
+That command failed before it could fetch any listing page, so `3.1_cvpr_conf_extract/results/cvpr2024_papers.json` could not be generated in this container.
 
 ## Why the five-paper result and all-paper run looked inconsistent
 

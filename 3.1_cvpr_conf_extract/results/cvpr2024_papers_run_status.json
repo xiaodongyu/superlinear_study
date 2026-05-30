@@ -1,0 +1,19 @@
+{
+  "requested_output": "3.1_cvpr_conf_extract/results/cvpr2024_papers.json",
+  "status": "partial_success_with_followup_needed",
+  "timestamp_utc": "2026-05-30T00:00:00Z",
+  "details": [
+    "First-5 scrape passes and includes abstracts after parser fix.",
+    "Full run produced 2716 records with titles/authors/pdf/supplemental links.",
+    "A long full rerun is still required to repopulate abstract/code_url across the full dataset in this environment due network/runtime instability."
+  ],
+  "generated_files": [
+    "3.1_cvpr_conf_extract/results/cvpr2024_first5.json",
+    "3.1_cvpr_conf_extract/results/cvpr2024_papers.json",
+    "3.1_cvpr_conf_extract/results/cvpr2024_dashboard.html"
+  ],
+  "next_commands": [
+    "python3 3.1_cvpr_conf_extract/src/scrape_cvpr2024.py --format json --output 3.1_cvpr_conf_extract/results/cvpr2024_papers.json",
+    "python3 3.1_cvpr_conf_extract/src/build_cvpr2024_dashboard.py"
+  ]
+}
